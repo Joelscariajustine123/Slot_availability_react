@@ -3,7 +3,10 @@ import mongoose from "mongoose";
 const studentSchema = new mongoose.Schema({
     name: String,
     gcard: String,
-    system: String,
+    system: {
+        type:Boolean,
+        default:true
+    },
     course: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Courses'

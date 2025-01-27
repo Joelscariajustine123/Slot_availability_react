@@ -1,9 +1,13 @@
 import { Student } from "../models/Students.js";
+import { Course } from "../models/Course.js";
+import { Slot } from "../models/slot.js";
 
 export const createBooking = async (req, res) => {
     try {
         const { gcard, studentName, system ,slot} = req.body;
         console.log(gcard, studentName, system ,slot)
+        const course = await Course.findOne({ name: "Web Development" });
+        const s = await Slot.findOne({  });
 
         const student = new Student({
             gcard,
@@ -12,6 +16,7 @@ export const createBooking = async (req, res) => {
             slot
         })
 
+        await student.save();
         res.status(201).json({ message: "Booking successful"});
 
     } catch (error) {
